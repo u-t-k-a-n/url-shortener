@@ -1,14 +1,18 @@
 const express = require('express');
 const router = express.Router();
+const { saveShortUrl, getAllLinks } = require('../models/shortUrl.js');
 
-router.get('/', (req, res) => {
-    res.json({ message: 'Hello World' });
- 
+
+router.get('/', async (req, res) => {
+    const results = await getAllLinks();
+    res.json({ results });
+ //   console.log(results);
 })
 
-router.post('/shortUrls', (req, res) => {
-    console.log(req.body);
-    res.json({ message: 'Hello World' });   
+router.post('/shortUrls',  async (req, res) => {
+    const fullUrl = req.body.fullUrl;
+    await saveShortUrl(fullUrl);
+    res.redirect("http://localhost:3000");
 })
 
 module.exports = router;
