@@ -6,7 +6,6 @@ const { saveShortUrl, getAllLinks } = require('../models/shortUrl.js');
 router.get('/', async (req, res) => {
     const results = await getAllLinks();
     res.json({ results });
- //   console.log(results);
 })
 
 router.post('/shortUrls',  async (req, res) => {

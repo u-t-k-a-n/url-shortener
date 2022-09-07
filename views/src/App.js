@@ -4,9 +4,11 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Table from 'react-bootstrap/Table';
 
 function App() {
   const [data, setData] = useState();
+  const [tableData, setTableData] = useState();
 
   useEffect(() => {
     function getAllLinks() {
@@ -15,12 +17,31 @@ function App() {
         .then((data) => {
           setData(data.results);
         });
-      console.log(data);
     }
     getAllLinks();
-
-    //  console.log(data);
   }, []);
+
+  function betterString(str) {
+    str = str.toString().substring(1, str.length - 1);
+    return str;
+  }
+
+  function splitString(str) {
+    str = str.split(',');
+    return str;
+  }
+
+  function attendLink(str) {
+    str = betterString(str);
+    str = splitString(str);
+    const originalLink = str[0];
+    const shortLink = str[1];
+    const count = str[2];
+    return { originalLink, shortLink, count };
+  }
+
+
+
 
   return (
 
@@ -40,31 +61,29 @@ function App() {
         </Form.Group>
       </Form>
 
-      <table className="table">
+      <Table className="" variant="dark" responsive striped size="sm">
         <thead>
           <tr>
-            <th>Original URL</th>
-            <th>Shortened URL</th>
+            <th >Original URL</th>
+            <th >Shortened URL</th>
             <th>Clicks</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><a href="https://www.google.com">https://www.google.com</a></td>
-            <td><a href="http://localhost:3000/1">http://localhost:3000/1</a></td>
-            <td>0</td>
-          </tr>
+          { data && data.map(link => {
+            const { originalLink, shortLink, count } = attendLink(link.urls_get_all_links);
+            return (
+              <tr key={link._id}>
+                <td style={{ overflow: "hidden", maxWidth: "75ch" }}><a href={originalLink}>{originalLink}</a></td>
+                <td><a href={shortLink}>{shortLink}</a></td>
+                <td>{count}</td>
+              </tr>
+            )
+          }
+          )} 
         </tbody>
-      </table>
-      <p>
-        {!data ? "Loading..." : data.map((item) => (
-          <div key={item.id}>
-{item.urls_get_all_links}
-          </div>
-        ))
-      }
-      </p>
-    </div>
+      </Table>
+    </div >
   );
 }
 

@@ -14,8 +14,6 @@ async function saveShortUrl(longUrl) {
 async function getAllLinks() {
     try {
         const results = await pool.query("SELECT Urls_get_all_links()");
-        console.log("results:");
-        console.log(results);
         return results.rows;
     }
     catch (err) {
