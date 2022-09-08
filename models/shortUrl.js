@@ -21,5 +21,24 @@ async function getAllLinks() {
     }
 }
 
- module.exports = {saveShortUrl, getAllLinks};
+async function getOriginalUrl(shortUrl) {
+    try {
+        const results = await pool.query("SELECT Urls_get_full_url($1)", [shortUrl]);
+        return results.rows;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+async function incrementCount(shortUrl) {
+    try {
+        const results = await pool.query("SELECT Urls_count_increment($1)", [shortUrl]);
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+ module.exports = {saveShortUrl, getAllLinks, getOriginalUrl, incrementCount};
 
