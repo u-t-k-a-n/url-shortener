@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
 
+const SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:5000';
+
 export default function UrlTable() {
     const [data, setData] = useState();
 
   useEffect(() => {
     function getAllLinks() {
-      fetch("http://localhost:5000/")
+      fetch(`${SERVER_URL}`)
         .then((res) => res.json())
         .then((data) => {
           setData(data.results);
@@ -46,7 +48,7 @@ export default function UrlTable() {
           {data && data.map(link => {
             const { originalLink, shortLink, count } = attendLink(link.urls_get_all_links);
             return (
-              <tr key={link._id}>
+              <tr key={shortLink}>
                 <td style={{ overflow: "hidden", maxWidth: "75ch" }}><a href={originalLink}>{originalLink}</a></td>
                 <td>
 

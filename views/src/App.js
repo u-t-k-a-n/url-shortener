@@ -7,15 +7,16 @@ import HandleRedirect from "./components/HandleRedirect";
 function App() {
 
   return (
-
-    <div className="container">
-      <Router>
-        <Routes>
-          <Route exact path="/" element={ <Home /> } />
-          <Route exact path="/:shortUrl" element={ <HandleRedirect /> } />
-        </Routes>
-      </Router>
-    </div >
+    <div style={{ backgroundColor: "#212529" }}>
+      <div className="container">
+        <Router>
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route exact path="/:shortUrl" element={<HandleRedirect />} />
+          </Routes>
+        </Router>
+      </div >
+    </div>
   );
 }
 

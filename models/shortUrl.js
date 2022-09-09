@@ -5,6 +5,7 @@ async function saveShortUrl(longUrl) {
     const shortUrl = shortId.generate();
     try {
         const results = await pool.query("SELECT Urls_insert($1, $2)", [longUrl, shortUrl]);
+        return shortUrl;
     }
     catch (err) {
         console.log(err);

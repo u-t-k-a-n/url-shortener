@@ -9,8 +9,8 @@ router.get('/', async (req, res) => {
 
 router.post('/shortUrls',  async (req, res) => {
     const fullUrl = req.body.fullUrl;
-    await saveShortUrl(fullUrl);
-    res.redirect("http://localhost:3000");
+    const shortUrl = await saveShortUrl(fullUrl);
+    res.json({ shortUrl });
 })
 
 router.get('/:shortUrl', async (req, res) => {
