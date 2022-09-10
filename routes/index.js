@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { saveShortUrl, getAllLinks, getOriginalUrl, incrementCount } = require('../models/shortUrl.js');
 
-router.get('/', async (req, res) => {
+router.get('/all_links', async (req, res) => {
     const results = await getAllLinks();
     res.json({ results });
 })

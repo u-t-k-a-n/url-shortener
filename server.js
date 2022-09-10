@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
 const indexRouter = require('./routes/index.js');
 
 app.use(cors());

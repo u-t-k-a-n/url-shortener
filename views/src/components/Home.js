@@ -4,7 +4,6 @@ import UrlTable from './UrlTable'
 import axios from 'axios'
 import Modal from 'react-bootstrap/Modal';
 
-const SERVER_URL = process.env.REACT_APP_SERVER_URL || 'http://localhost:5000';
 
 export default function Home() {
     const [shortUrl, setShortUrl] = useState(null);
@@ -15,7 +14,7 @@ export default function Home() {
     async function handleSubmit(e) {
         e.preventDefault();
         const fullUrl = e.target.fullUrl.value;
-        const response = await axios.post(`${SERVER_URL}/shortUrls`, { fullUrl });
+        const response = await axios.post("/shortUrls", { fullUrl });
         setShortUrl(response.data.shortUrl);
     }
 
