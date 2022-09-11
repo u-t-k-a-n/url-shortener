@@ -16,7 +16,7 @@ const indexRouter = require('./routes/index.js');
 app.use(cors());
 app.use("/", indexRouter);
 
-app.use(express.static(path.join(__dirname,'/views/build')));
+app.use(express.static(path.join(__dirname,'/views/public')));
 app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "/views/build", "index.html"));
 });
