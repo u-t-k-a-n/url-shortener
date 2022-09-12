@@ -20,7 +20,7 @@ export default function HandleRedirect() {
 
     useEffect(() => {
         if (data) {
-            window.location.replace(data.fullUrl);
+            window.location = data;
         }
     }, [data]);
 
