@@ -20,7 +20,7 @@ export default function HandleRedirect() {
 
     useEffect(() => {
         if (data) {
-            window.location = data;
+            window.location.replace("https://www.youtube.com/");
         }
     }, [data]);
 
