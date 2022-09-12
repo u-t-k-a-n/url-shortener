@@ -25,8 +25,8 @@ export default function HandleRedirect() {
     }, [data]);
 
     return (
-        <div>
-        {(!data && !error) ? <h1>Loading...</h1> : <h1>404 Not Found</h1>}
+        <div >
+        {(!data && !error) ? <h1 style={{ color:"white"}}>Loading...</h1> : <h1 style={{ color:"white"}}>404 Not Found</h1>}
         </div>
   )
 }
