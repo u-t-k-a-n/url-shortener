@@ -19,7 +19,6 @@ router.get('/:shortUrl', async (req, res) => {
     if (fullUrl[0].urls_get_full_url == null) return res.sendStatus(404);
     await incrementCount(shortUrl);
     res.redirect(fullUrl[0].urls_get_full_url);
-   // res.json({ fullUrl: fullUrl[0].urls_get_full_url });
 })
 
 module.exports = router;

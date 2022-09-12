@@ -18,12 +18,6 @@ export default function HandleRedirect() {
         getLink();
     }, []);
 
-    useEffect(() => {
-        if (data) {
-            window.location.replace("https://www.youtube.com/");
-        }
-    }, [data]);
-
     return (
         <div>
         {(!data && !error) ? <h1>Loading...</h1> : <h1>404 Not Found</h1>}
