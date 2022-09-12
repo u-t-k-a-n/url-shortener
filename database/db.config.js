@@ -7,7 +7,7 @@ const cn = {
   port: process.env.DB_PORT,
   database: process.env.DB_DATABASE,
   allowExitOnIdle: true,
-  ssl: true
+  ssl: { rejectUnauthorized: false }
 };
 
 const pool = new Pool(cn);
